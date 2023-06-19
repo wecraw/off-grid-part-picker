@@ -1,0 +1,63 @@
+@import "../common/variables.scss";
+
+.scene{
+    height: 100vh;
+
+    .scene-header{
+        font-size: $font-size-h1;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 35px;
+        margin-bottom: 70px;
+    }
+}
+.spacer{
+    width: 35px;
+}
+
+.tiles{
+    display: flex;
+}
+
+.get-started{
+    cursor: pointer;
+    height:fit-content;
+    width: fit-content;
+
+    .label{
+        margin-left: -4px;
+    }
+
+    .battery-wrapper{
+        height: 40px;
+        .battery {
+            font-size: 72px;
+            height: 60px;
+            color: $green-dark;
+            position: absolute;
+        }
+    
+        .battery-bg{
+            font-size: 82px;
+            height: 60px;
+            color: $green-dark-less-transparent;
+            position: absolute;
+            opacity: 0;
+            margin-left: -4px;
+            margin-top: -4px;
+            filter: blur(4px);
+            transition: all 0.2s ease-in-out;
+        }
+    }
+
+
+    &:hover{
+        .battery-wrapper{
+            .battery-bg{
+                opacity: 1;
+                transition: all 0.2s ease-in-out;
+            }
+        }
+
+    }
+}

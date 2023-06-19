@@ -1,0 +1,45 @@
+<div class="container scrollable">
+    <div *ngIf="progressStep === 0 || progressStep === 1" id="scene0" class="row scene">
+        <div class="col-12 d-flex justify-content-center center-vertical">
+            <div (click)="scrollToScene(1)" class="get-started">
+                <div class="battery-wrapper">
+                    <i class="battery fa-solid fa-battery-full"></i>
+                    <i class="battery-bg fa-solid fa-battery-full"></i>
+
+                </div>
+                <br>
+                <b class="label">Get started</b>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="progressStep === 1" id="scene1" class="row scene">
+        <div class="col-12 d-flex vertical">
+            <div class="scene-header">
+                What are you designing for?
+            </div>
+            <div class="tiles center-horizontal">
+                <tile label="Cabin" icon="fa-house"></tile>
+                <div class="spacer"></div>
+                <tile label="Van" icon="fa-van-shuttle"></tile>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+    <!-- <div class="row">
+        <div class="col-sm d-flex justify-content-center">
+            <tile label="Kitchen" icon="fa-kitchen-set"></tile>
+        </div>
+        <div class="col-sm d-flex justify-content-center">
+            <tile label="Kitchen" icon="fa-kitchen-set"></tile>
+        </div>
+        <div class="col-sm d-flex justify-content-center">
+            <tile label="Kitchen" icon="fa-kitchen-set"></tile>
+        </div>
+
+    </div>  -->
