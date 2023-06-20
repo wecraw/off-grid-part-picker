@@ -9,7 +9,7 @@ export class TileComponent {
 
   @Input() label?: string;
   @Input() icon?: string;
-
-    
+  @Input() small?: boolean;
+  @Input() subLabel?: string;
 
 }

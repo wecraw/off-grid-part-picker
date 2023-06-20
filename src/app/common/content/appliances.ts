@@ -1,6 +1,6 @@
 //kitchen
 
-import { Appliance } from "./appliance";
+import { Appliance } from "../interfaces/appliance";
 
 export const appliances: Appliance[] = [
     {
@@ -22,7 +22,8 @@ export const appliances: Appliance[] = [
         applianceGroup: 'kitchen'
     },
     {
-        name: "Fridge (20 cu. ft.)",
+        name: "Fridge",
+        description: '20 cu. ft.',
         wattage: 353,
         averageWattage: 353,
         averageUsageTime: 4,
@@ -31,7 +32,8 @@ export const appliances: Appliance[] = [
         applianceGroup: 'kitchen'
     },
     {
-        name: "Freezer (15 cu. ft.)",
+        name: "Freezer",
+        description: '15 cu. ft.',
         wattage: 270,
         averageWattage: 270,
         averageUsageTime: 0.3,

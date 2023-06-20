@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { BuildSpecs } from '../common/build-specs';
-import { testAppliances } from '../common/appliance-groups';
+import { BuildSpecs } from '../common/interfaces/build-specs';
+import { testAppliances } from '../common/content/appliance-groups';
 
 @Component({
   selector: 'home',
@@ -14,7 +14,11 @@ export class HomeComponent {
   fadeOutScene: number = -1;
   fadeInScene: number = -1;
 
-  progressStep: number = 0;
+  // progressStep: number = 0;
+  progressStep: number = 4;
+
+
+  
 
   testAppliances = testAppliances
 

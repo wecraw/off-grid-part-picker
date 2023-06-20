@@ -1,5 +1,8 @@
+@import '../variables.scss';
+
 .button-bar{
     width: 100%;
+    max-width: 500px;
     margin-bottom: 20px;
     padding: 0 1rem;
     display: flex;

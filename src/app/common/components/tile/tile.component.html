@@ -1,8 +1,11 @@
-<div class="tile">
+<div class="tile" [ngClass]="{'small': small}">
     <div class="inner-tile">
         <i *ngIf="icon" class="tile-icon fa-solid" [ngClass]="icon"></i>
         <div class="label">
             {{label}}
+        </div>
+        <div class="sub-label">
+            {{subLabel}}
         </div>
     </div>
 </div>

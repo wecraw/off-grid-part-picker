@@ -3,14 +3,14 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
 @import "./app/common/variables.scss";
 
-html{scroll-behavior:smooth}
+.container {
+    max-width: 900px;
+}
 
 h1{
     font-size: $font-size-h1;
     font-weight: bold;
     text-align: center;
-    margin-top: 35px;
-    margin-bottom: 70px;
 }
 
 .btn {
@@ -42,4 +42,14 @@ h1{
 
 .vertical{
     flex-direction: column;
+}
+
+
+.divider{
+    width: 100vw;
+    position: absolute;
+    left: 0;
+    bottom: $button-bar-height;
+    height: 1px;
+    background: $gray-light;
 }

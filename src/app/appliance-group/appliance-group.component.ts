@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Appliance } from '../common/appliance';
-import { ApplianceGroup } from '../common/appliance-group';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+import { Appliance } from '../common/interfaces/appliance';
+import { ApplianceGroup } from '../common/interfaces/appliance-group';
 
 @Component({
   selector: 'appliance-group',
@@ -16,8 +16,13 @@ export class ApplianceGroupComponent implements OnInit {
   @Output() onSecondary: EventEmitter<any> = new EventEmitter();
   @Output() onPrimary: EventEmitter<any> = new EventEmitter();
 
-  suggestedAppliancesDisplay = this.suggestedAppliances.appliances;
+  suggestedAppliancesDisplay: Appliance[] = [];
+  fillers: number = 0
 
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.getFillers()
+  }
 
   secondaryClicked(){
     this.onSecondary.emit()
@@ -27,7 +32,40 @@ export class ApplianceGroupComponent implements OnInit {
     this.onPrimary.emit()
   }
 
+  getFillers(){
+    if (window.innerWidth > 503) {
+      this.fillers = 4 - this.suggestedAppliancesDisplay.length % 4
+      if (this.fillers === 4 ) this.fillers = 0
+    } else {
+      this.fillers = 3 - this.suggestedAppliancesDisplay.length % 3
+      if (this.fillers === 3 ) this.fillers = 0
+
+    }
+  }
+
+  addAppliance(appliance: Appliance){
+    this.selectedAppliances.push(appliance)
+    this.scroll()
+  }
+
+  removeAppliance(index: number){
+    this.selectedAppliances.splice(index, 1)
+  }
+  
+  scroll(){
+    let objDiv = document.getElementById("wrapper")!;
+    setTimeout(() => {
+      objDiv.scrollTo({top: objDiv.scrollHeight, behavior: 'smooth'});
+    }, 1) //duration of fade out animation
+
+    
+
+  }
+
   ngOnInit(){
+    this.suggestedAppliancesDisplay = this.suggestedAppliances.appliances
+    this.getFillers()
+
 
   }
 }

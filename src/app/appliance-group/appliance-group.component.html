@@ -1,17 +1,33 @@
 <div class="col-12 d-flex vertical h-100">
-    <h1>
+    <h1 class="header center-horizontal">
         {{headerLabel}}
     </h1>
-    <div class="center-horizontal">
-        <input type="text">
+    <input class="center-horizontal" type="text">
 
-        <div class="suggested-appliances-list">
-            <div *ngFor="let appliance of suggestedAppliances.appliances">
-                    <tile [label]="appliance.name"></tile>
+    <div class="suggested-appliances-list center-horizontal">
+        <div class="suggested-appliance-li" *ngFor="let appliance of suggestedAppliancesDisplay">
+                <tile (click)="addAppliance(appliance)" [small]="true" [label]="appliance.name" [subLabel]="appliance.description"></tile>
+        </div>
+        <div class="suggested-appliance-li" *ngFor="let i of [].constructor(fillers)">
+            <tile [small]="true" class="transparent"></tile>
+        </div>        
+    </div>
+
+    <div class="spacer"></div>
+
+        <div *ngIf="selectedAppliances.length > 0" class="added-appliances-list center-horizontal">
+            <div id="wrapper" class="wrapper">
+
+            <div class="added-appliance-li" *ngFor="let appliance of selectedAppliances; index as i">
+                <span class="center-vertical">{{appliance.name}}</span>
+                <div (click)='removeAppliance(i)' class="cancel center-vertical"><i class="fa-solid fa-xmark"></i></div>
             </div>
         </div>
-        
 
-    </div>
-    <button-bar class="m-t-a" (onSecondary)="secondaryClicked()" (onPrimary)="primaryClicked()" ></button-bar>
+        </div>
+
+
+
+    <div class="divider"></div>
+    <button-bar class="m-t-a" (onSecondary)="secondaryClicked()" (onPrimary)="primaryClicked()"></button-bar>
 </div>

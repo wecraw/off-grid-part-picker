@@ -1,5 +1,6 @@
 export interface Appliance {
     name: string;
+    description? : string;
     id?: string;
     icon?: any;
 

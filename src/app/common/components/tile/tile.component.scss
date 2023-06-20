@@ -1,4 +1,4 @@
-@import "../variables.scss";
+@import "../../variables.scss";
 
 .tile {
     border: 2px solid $green-light;
@@ -10,6 +10,11 @@
     flex-direction: column;
     cursor: pointer;
 
+    &.small {
+        height: 100px;
+        width: 100px;
+    }
+
     &:hover{
 
     }
@@ -19,13 +24,21 @@
         flex-direction: column;
         margin-top: auto;
         margin-bottom: auto;
-        padding-bottom: 20px;
+        padding-bottom: 5px;
+        justify-content: center;
 
         .label{
             font-size: $font-size-body;
             margin-left: auto;
             margin-right: auto;
             font-weight: bold;
+            text-align: center;
+        }
+
+        .sub-label{
+            font-size: $font-size-xs;
+            font-weight: bold;
+            text-align: center;
         }
     
         .tile-icon{
