@@ -1,7 +1,7 @@
 <div class="container scrollable">
-    <div *ngIf="progressStep === 0 || progressStep === 1" id="scene0" class="row scene">
+    <div *ngIf="progressStep === 0" id="scene0" class="row scene" [ngClass]="{'fade-out': isFadeOut(0), 'fade-in': isFadeIn(0)}">
         <div class="col-12 d-flex justify-content-center center-vertical">
-            <div (click)="scrollToScene(1)" class="get-started">
+            <div (click)="next()" class="get-started">
                 <div class="battery-wrapper">
                     <i class="battery fa-solid fa-battery-full"></i>
                     <i class="battery-bg fa-solid fa-battery-full"></i>
@@ -13,19 +13,74 @@
         </div>
     </div>
 
-    <div *ngIf="progressStep === 1" id="scene1" class="row scene">
+    <div *ngIf="progressStep === 1" id="scene1" class="row scene" [ngClass]="{'fade-out': isFadeOut(1), 'fade-in': isFadeIn(1)}">
         <div class="col-12 d-flex vertical">
             <div class="scene-header">
                 What are you designing for?
             </div>
             <div class="tiles center-horizontal">
-                <tile label="Cabin" icon="fa-house"></tile>
+                <tile (click)="buildTypeSelect('cabin')" label="Cabin" icon="fa-house"></tile>
                 <div class="spacer"></div>
-                <tile label="Van" icon="fa-van-shuttle"></tile>
+                <tile (click)="buildTypeSelect('van')" label="Van" icon="fa-van-shuttle"></tile>
             </div>
+
+            <button-bar class="m-t-a" (onSecondary)="back()" [hidePrimary]="true" ></button-bar>
 
         </div>
     </div>
+
+    <div *ngIf="progressStep === 2" id="scene2" class="row scene" [ngClass]="{'fade-out': isFadeOut(2), 'fade-in': isFadeIn(2)}">
+        <div class="col-12 d-flex vertical">
+            <div class="scene-header">
+                How would you like to setup your build?
+            </div>
+            <div class="tiles center-horizontal">
+                <tile (click)="setupTypeSelect('simple')" label="Simple" icon="fa-bolt"></tile>
+                <div class="spacer"></div>
+                <tile (click)="setupTypeSelect('custom')" label="Custom" icon="fa-sliders"></tile>
+            </div>
+
+            <button-bar class="m-t-a" (onSecondary)="back()" [hidePrimary]="true" ></button-bar>
+
+        </div>
+    </div>
+
+    <div *ngIf="progressStep === 3" id="scene3" class="row scene" [ngClass]="{'fade-out': isFadeOut(3), 'fade-in': isFadeIn(3)}">
+        <div class="col-12 d-flex vertical">
+            <div class="scene-header">
+                Let's add your appliances
+            </div>
+            <div class="text-body center-horizontal">
+                <p>
+                    We'll walk you through some common appliances, and you can tell us what you have.
+                </p>
+                <ng-container *ngIf="isSimpleMode()">
+                    <p>
+                        In <b>simple</b> setup mode, we'll use estimates to determine how much power your appliances consume and how long you use it for.
+                    </p>
+                    <p>
+                        If you'd like more control over your appliance specs, you can <a href="javascript:;" (click)="back()">change to custom mode</a>.
+                    </p>
+                </ng-container>
+                <ng-container *ngIf="!isSimpleMode()">
+                    <p>
+                        In <b>custom</b> setup mode, you can tell us the exact specs of your appliances and how long you use it for.
+                    </p>
+                    <p>
+                        If you'd like a simpler experience using estimates, you can <a href="javascript:;" (click)="back()">change to simple mode</a>.
+                    </p>
+                </ng-container>
+            </div>
+            <button-bar class="m-t-a" (onSecondary)="back()" (onPrimary)="next()" ></button-bar>
+        </div>
+    </div>
+
+    <div *ngIf="progressStep === 4" id="scene4" class="row scene" [ngClass]="{'fade-out': isFadeOut(4), 'fade-in': isFadeIn(4)}">
+        <appliance-group [suggestedAppliances]="testAppliances" [mode]="buildSpecs.setupType" headerLabel="Kitchen"></appliance-group>
+    </div>
+
+
+
 </div>
 
 

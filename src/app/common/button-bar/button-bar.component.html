@@ -1,0 +1,4 @@
+<div class="button-bar">
+    <button (click)="secondaryClicked()" type="button" class="btn btn-outline-secondary">{{secondaryLabel}}</button>
+    <button *ngIf="!hidePrimary" (click)="primaryClicked()" type="button" class="btn btn-primary">{{primaryLabel}}</button>
+</div>

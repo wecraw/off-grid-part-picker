@@ -5,8 +5,8 @@ export interface Appliance {
 
     averageWattage?: number;
     wattage: number;
-    averageUsageTime?: number;
-    usageTime: number;
+    averageUsageTime?: number; //hours
+    usageTime: number; //hours
 
     quantity: number;
 

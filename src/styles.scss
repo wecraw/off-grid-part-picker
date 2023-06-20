@@ -1,12 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "../node_modules/bootstrap/scss/bootstrap";
+@import "./app/common/variables.scss";
 
 html{scroll-behavior:smooth}
 
+h1{
+    font-size: $font-size-h1;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 35px;
+    margin-bottom: 70px;
+}
+
+.btn {
+    min-height: 45px;
+    min-width: 130px;
+}
+
+.btn-primary {
+    background-color: $green-dark;
+    border-color: $green-dark;
+}
 .center-vertical{
     margin-top: auto;
     margin-bottom: auto;
+}
+
+.m-t-a{
+    margin-top: auto;
 }
 
 .center-horizontal{

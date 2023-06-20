@@ -6,6 +6,8 @@
     width: 150px;
     border-radius: 5px;
     background: $green-light-transparent;
+    display: flex;
+    flex-direction: column;
     cursor: pointer;
 
     &:hover{
@@ -15,6 +17,9 @@
     .inner-tile{
         display: flex;
         flex-direction: column;
+        margin-top: auto;
+        margin-bottom: auto;
+        padding-bottom: 20px;
 
         .label{
             font-size: $font-size-body;

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { BuildSpecs } from '../common/build-specs';
+import { testAppliances } from '../common/appliance-groups';
 
 @Component({
   selector: 'home',
@@ -7,32 +9,57 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  buildSpecs: BuildSpecs = {} as BuildSpecs;
+
+  fadeOutScene: number = -1;
+  fadeInScene: number = -1;
+
   progressStep: number = 0;
 
-  scrollToScene(sceneNumber: number){
-
-    if (sceneNumber > this.progressStep) this.progressStep = sceneNumber
-
-    let id = "scene" + sceneNumber
-
-    setTimeout(() => { //1ms timeout on this so that the DOM can update before attempting to scroll
-      this.smoothScroll(id)
-    }, 1);
+  testAppliances = testAppliances
 
 
+  buildTypeSelect(type: 'van' | 'cabin'){
+    this.buildSpecs.buildType = type
+    this.next()
   }
 
-  smoothScroll(id: string){
-    let el = document.getElementById(id);
+  setupTypeSelect(type: 'simple' | 'custom'){
+    this.buildSpecs.setupType = type
+    this.next()
+  } 
 
-    if (el) {
-      el.scrollIntoView({
-        behavior: 'smooth'
-        
-      })
-    } else {
-      throw new Error("element not found");
-    }
+
+  //helpers
+  isSimpleMode(){
+    return this.buildSpecs.setupType === 'simple'
   }
 
+
+  //DOM helpers-----------------------------------------------------
+  isFadeOut(sceneNumber: number){
+    return this.fadeOutScene === sceneNumber
+  }
+
+  isFadeIn(sceneNumber: number){
+    return this.fadeInScene === sceneNumber
+  }
+
+  back(){
+    this.fadeToScene(this.progressStep, this.progressStep - 1)
+  }
+
+  next(){
+    this.fadeToScene(this.progressStep, this.progressStep + 1)
+  }
+
+  fadeToScene(tranisitonFrom: number, transitionTo: number){
+    this.fadeOutScene = tranisitonFrom;
+
+    setTimeout(() => {
+      this.fadeInScene = transitionTo
+      this.progressStep = transitionTo
+    }, 300) //duration of fade out animation
+
+  }
 }

@@ -1,1 +1,17 @@
-<p>appliance-group works!</p>
+<div class="col-12 d-flex vertical h-100">
+    <h1>
+        {{headerLabel}}
+    </h1>
+    <div class="center-horizontal">
+        <input type="text">
+
+        <div class="suggested-appliances-list">
+            <div *ngFor="let appliance of suggestedAppliances.appliances">
+                    <tile [label]="appliance.name"></tile>
+            </div>
+        </div>
+        
+
+    </div>
+    <button-bar class="m-t-a" (onSecondary)="secondaryClicked()" (onPrimary)="primaryClicked()" ></button-bar>
+</div>
