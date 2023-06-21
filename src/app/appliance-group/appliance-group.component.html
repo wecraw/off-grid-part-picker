@@ -6,13 +6,13 @@
 
     <div class="suggested-appliances-list center-horizontal">
         <div class="suggested-appliance-li" *ngFor="let appliance of suggestedAppliancesDisplay">
-                <tile (click)="addAppliance(appliance)" [small]="true" [label]="appliance.name" [subLabel]="appliance.description"></tile>
+                <tile (click)="toggle(appliance)" [selectable]="true" [selected]="isSelected(appliance)" [small]="true" [label]="appliance.name" [subLabel]="appliance.description"></tile>
         </div>
         <div class="suggested-appliance-li" *ngFor="let i of [].constructor(fillers)">
             <tile [small]="true" class="transparent"></tile>
         </div>        
     </div>
-
+<!-- 
     <div class="spacer"></div>
 
         <div *ngIf="selectedAppliances.length > 0" class="added-appliances-list center-horizontal">
@@ -24,10 +24,8 @@
             </div>
         </div>
 
-        </div>
+        </div> -->
 
 
 
-    <div class="divider"></div>
-    <button-bar class="m-t-a" (onSecondary)="secondaryClicked()" (onPrimary)="primaryClicked()"></button-bar>
 </div>

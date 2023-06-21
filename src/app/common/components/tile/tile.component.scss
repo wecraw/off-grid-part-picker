@@ -1,11 +1,11 @@
 @import "../../variables.scss";
 
 .tile {
-    border: 2px solid $green-light;
+    border: 2px solid $green-dark;
     height: 150px;
     width: 150px;
     border-radius: 5px;
-    background: $green-light-transparent;
+    background: $green-very-light-transparent;
     display: flex;
     flex-direction: column;
     cursor: pointer;
@@ -13,6 +13,11 @@
     &.small {
         height: 100px;
         width: 100px;
+    }
+    &.selected {
+
+        background: $green-tile-selected;
+        
     }
 
     &:hover{

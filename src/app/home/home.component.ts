@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BuildSpecs } from '../common/interfaces/build-specs';
+import { Appliance } from '../common/interfaces/appliance';
 import { testAppliances } from '../common/content/appliance-groups';
 
 @Component({
@@ -15,13 +16,16 @@ export class HomeComponent {
   fadeInScene: number = -1;
 
   // progressStep: number = 0;
-  progressStep: number = 4;
+  progressStep: number = 0;
 
-
+  selectedAppliancesKitchen: Appliance[] = []
   
 
   testAppliances = testAppliances
 
+  test(){
+    console.log("hey")
+  }
 
   buildTypeSelect(type: 'van' | 'cabin'){
     this.buildSpecs.buildType = type
@@ -31,8 +35,7 @@ export class HomeComponent {
   setupTypeSelect(type: 'simple' | 'custom'){
     this.buildSpecs.setupType = type
     this.next()
-  } 
-
+  }
 
   //helpers
   isSimpleMode(){

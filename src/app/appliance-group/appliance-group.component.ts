@@ -1,4 +1,5 @@
 import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+import { find } from 'rxjs';
 import { Appliance } from '../common/interfaces/appliance';
 import { ApplianceGroup } from '../common/interfaces/appliance-group';
 
@@ -11,6 +12,7 @@ export class ApplianceGroupComponent implements OnInit {
   @Input() headerLabel: string = "Header";
   @Input() suggestedAppliances!: ApplianceGroup;
   @Input() selectedAppliances: Appliance[] = []
+
   @Input() mode!: "simple" | "custom";
 
   @Output() onSecondary: EventEmitter<any> = new EventEmitter();
@@ -51,6 +53,17 @@ export class ApplianceGroupComponent implements OnInit {
   removeAppliance(index: number){
     this.selectedAppliances.splice(index, 1)
   }
+
+  toggle(appliance: Appliance){
+    let i = this.selectedAppliances.findIndex(obj => obj.name === appliance.name) //need to change this to ID
+
+    if (i === -1) {
+      this.selectedAppliances.push(appliance)
+    } else {
+      this.selectedAppliances.splice(i, 1)
+    }
+    
+  }
   
   scroll(){
     let objDiv = document.getElementById("wrapper")!;
@@ -62,10 +75,13 @@ export class ApplianceGroupComponent implements OnInit {
 
   }
 
+  isSelected(appliance: Appliance){
+    let i = this.selectedAppliances.findIndex(obj => obj.name === appliance.name) //need to change this to ID
+    return (i !== -1)
+  }
+
   ngOnInit(){
     this.suggestedAppliancesDisplay = this.suggestedAppliances.appliances
     this.getFillers()
-
-
   }
 }

@@ -24,6 +24,7 @@
                 <tile (click)="buildTypeSelect('van')" label="Van" icon="fa-van-shuttle"></tile>
             </div>
 
+            <div class="divider"></div>
             <button-bar class="m-t-a" (onSecondary)="back()" [hidePrimary]="true" ></button-bar>
 
         </div>
@@ -40,6 +41,7 @@
                 <tile (click)="setupTypeSelect('custom')" label="Custom" icon="fa-sliders"></tile>
             </div>
 
+            <div class="divider"></div>
             <button-bar class="m-t-a" (onSecondary)="back()" [hidePrimary]="true" ></button-bar>
 
         </div>
@@ -72,13 +74,25 @@
                 </ng-container>
             </div>
 
+            <div class="divider"></div>
 
             <button-bar class="m-t-a" (onSecondary)="back()" (onPrimary)="next()" ></button-bar>
         </div>
     </div>
 
     <div *ngIf="progressStep === 4" id="scene4" class="row scene" [ngClass]="{'fade-out': isFadeOut(4), 'fade-in': isFadeIn(4)}">
-        <appliance-group [suggestedAppliances]="testAppliances" [mode]="buildSpecs.setupType" headerLabel="Kitchen"></appliance-group>
+        <appliance-group [selectedAppliances]="selectedAppliancesKitchen" [suggestedAppliances]="testAppliances" [mode]="buildSpecs.setupType" headerLabel="Kitchen"></appliance-group>
+        <div class="divider"></div>
+        <button-bar class="m-t-a" (onSecondary)="back()" (onPrimary)="next()" ></button-bar>
+    </div>
+
+    <div *ngIf="progressStep === 5" id="scene5" class="row scene" [ngClass]="{'fade-out': isFadeOut(5), 'fade-in': isFadeIn(5)}">
+        <div *ngFor="let appliance of selectedAppliancesKitchen">
+            {{appliance.name}}
+        </div>
+        <button-bar class="m-t-a" (onSecondary)="back()" (onPrimary)="next()" ></button-bar>
+
+
     </div>
 
 
