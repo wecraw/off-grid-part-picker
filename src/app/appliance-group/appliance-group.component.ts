@@ -13,7 +13,7 @@ export class ApplianceGroupComponent implements OnInit {
   @Input() suggestedAppliances!: ApplianceGroup;
   @Input() selectedAppliances: Appliance[] = []
 
-  @Input() mode!: "simple" | "custom";
+  @Input() mode!: "simple" | "custom" | null;
 
   @Output() onSecondary: EventEmitter<any> = new EventEmitter();
   @Output() onPrimary: EventEmitter<any> = new EventEmitter();

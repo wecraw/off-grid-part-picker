@@ -1,4 +1,4 @@
 <div class="center-horizontal button-bar">
     <button (click)="secondaryClicked()" type="button" class="btn btn-outline-secondary">{{secondaryLabel}}</button>
-    <button *ngIf="!hidePrimary" (click)="primaryClicked()" type="button" class="btn btn-primary">{{primaryLabel}}</button>
+    <button *ngIf="!hidePrimary" [attr.aria-disabled]="primaryDisabled" [ngClass]="{'disabled': primaryDisabled}" (click)="primaryClicked()" type="button" class="btn btn-primary">{{primaryLabel}}</button>
 </div>

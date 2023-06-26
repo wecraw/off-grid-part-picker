@@ -28,13 +28,19 @@ export class HomeComponent {
   }
 
   buildTypeSelect(type: 'van' | 'cabin'){
-    this.buildSpecs.buildType = type
-    this.next()
+    if (this.buildSpecs.buildType ===  type) {
+      this.buildSpecs.buildType = null;
+    } else {
+      this.buildSpecs.buildType = type
+    }
   }
 
   setupTypeSelect(type: 'simple' | 'custom'){
-    this.buildSpecs.setupType = type
-    this.next()
+    if (this.buildSpecs.setupType ===  type) {
+      this.buildSpecs.setupType = null;
+    } else {
+      this.buildSpecs.setupType = type
+    }
   }
 
   //helpers

@@ -11,6 +11,7 @@ export class ButtonBarComponent {
   @Input() secondaryLabel: string = "Back";
   @Input() primaryLabel: string = "Next";
   @Input() hidePrimary: boolean = false;
+  @Input() primaryDisabled: boolean = false;
 
   primaryClicked(){
     this.onPrimary.emit()

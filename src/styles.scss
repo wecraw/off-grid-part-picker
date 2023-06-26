@@ -21,6 +21,22 @@ h1{
 .btn-primary {
     background-color: $green-dark;
     border-color: $green-dark;
+
+    &.disabled {
+        background-color: $green-disabled;
+        border-color: $green-disabled;
+        pointer-events: none;
+    }
+
+    &:hover{
+        background-color: $green-dark;
+        border-color: $green-dark;
+    }
+
+    &:active{
+        background-color: $green-darker !important;
+        border-color: $green-dark !important;
+    }
 }
 .center-vertical{
     margin-top: auto;
@@ -44,7 +60,6 @@ h1{
     flex-direction: column;
 }
 
-
 .divider{
     width: 100vw;
     position: absolute;
@@ -53,3 +68,9 @@ h1{
     height: 1px;
     background: $gray-light;
 }
+
+.prevent-select {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+  }

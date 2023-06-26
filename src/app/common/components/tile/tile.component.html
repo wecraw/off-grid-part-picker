@@ -1,4 +1,4 @@
-<div (click)="toggleSelected()" class="tile" [ngClass]="{'small': small, 'selected': selected}">
+<div class="tile prevent-select" [ngClass]="{'small': small, 'selected': selected, 'disabled': disabled}">
     <div class="inner-tile">
         <i *ngIf="icon" class="tile-icon fa-solid" [ngClass]="icon"></i>
         <div class="label">

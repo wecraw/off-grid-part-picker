@@ -19,13 +19,13 @@
                 What are you designing for?
             </div>
             <div class="tiles center-horizontal">
-                <tile (click)="buildTypeSelect('cabin')" label="Cabin" icon="fa-house"></tile>
+                <tile (click)="buildTypeSelect('cabin')" label="Cabin" icon="fa-house" [selected]="buildSpecs.buildType === 'cabin'"></tile>
                 <div class="spacer"></div>
-                <tile (click)="buildTypeSelect('van')" label="Van" icon="fa-van-shuttle"></tile>
+                <tile (click)="buildTypeSelect('van')" label="Van" icon="fa-van-shuttle" [selected]="buildSpecs.buildType === 'van'"></tile>
             </div>
 
             <div class="divider"></div>
-            <button-bar class="m-t-a" (onSecondary)="back()" [hidePrimary]="true" ></button-bar>
+            <button-bar class="m-t-a" (onSecondary)="back()" (onPrimary)="next()" [primaryDisabled]="!buildSpecs.buildType"></button-bar>
 
         </div>
     </div>
@@ -36,13 +36,13 @@
                 How would you like to setup your build?
             </div>
             <div class="tiles center-horizontal">
-                <tile (click)="setupTypeSelect('simple')" label="Simple" icon="fa-bolt"></tile>
+                <tile (click)="setupTypeSelect('simple')" label="Simple" icon="fa-bolt" [selected]="buildSpecs.setupType === 'simple'"></tile>
                 <div class="spacer"></div>
-                <tile (click)="setupTypeSelect('custom')" label="Custom" icon="fa-sliders"></tile>
+                <tile (click)="setupTypeSelect('custom')" label="Custom" icon="fa-sliders" [selected]="buildSpecs.setupType === 'custom'"></tile>
             </div>
 
             <div class="divider"></div>
-            <button-bar class="m-t-a" (onSecondary)="back()" [hidePrimary]="true" ></button-bar>
+            <button-bar class="m-t-a" (onSecondary)="back()" (onPrimary)="next()" [primaryDisabled]="!buildSpecs.setupType"></button-bar>
 
         </div>
     </div>

@@ -12,10 +12,7 @@ export class TileComponent {
   @Input() small?: boolean;
   @Input() subLabel?: string;
   @Input() selected?: boolean;
-  @Input() selectable?: boolean;
-
-  toggleSelected(){
-    if (this.selectable) this.selected = !this.selected
-  }
+  @Input() selectable?: true;
+  @Input() disabled?: false;
 
 }
