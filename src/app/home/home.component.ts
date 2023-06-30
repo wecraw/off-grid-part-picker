@@ -16,7 +16,7 @@ export class HomeComponent {
   fadeInScene: number = -1;
 
   // progressStep: number = 0;
-  progressStep: number = 0;
+  progressStep: number = 4;
 
   selectedAppliancesKitchen: Appliance[] = []
   
