@@ -14,6 +14,7 @@ export class HomeComponent {
 
   fadeOutScene: number = -1;
   fadeInScene: number = -1;
+  showModal: boolean = true;
 
   // progressStep: number = 0;
   progressStep: number = 4;

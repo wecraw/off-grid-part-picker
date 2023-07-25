@@ -19,12 +19,12 @@ h1{
 }
 
 .btn-primary {
-    background-color: $green-dark;
-    border-color: $green-dark;
+    background-color: $green-dark !important;
+    border-color: $green-dark !important;
 
     &.disabled {
-        background-color: $green-disabled;
-        border-color: $green-disabled;
+        background-color: $green-disabled !important;
+        border-color: $green-disabled !important;
         pointer-events: none;
     }
 
@@ -74,3 +74,7 @@ h1{
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
   }
+
+.self-flex-end {
+    align-self: flex-end;
+}

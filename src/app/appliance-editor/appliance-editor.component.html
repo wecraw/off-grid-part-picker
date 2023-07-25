@@ -1,0 +1,15 @@
+<form [formGroup]="applianceForm">
+
+    <label for="name">Name: </label>
+    <input id="name" type="text" formControlName="name">
+  
+    <label for="wattage">Wattage: </label>
+    <input id="wattage" min="0" type="number" formControlName="wattage">
+
+    <label for="usageTime">Hours used per day:</label>
+    <input id="usageTime" min="0" type="number" formControlName="usageTime">
+
+    <label for="quantity">Quantity: </label>
+    <input id="quantity" min="1" type="number" formControlName="quantity">
+
+</form>
