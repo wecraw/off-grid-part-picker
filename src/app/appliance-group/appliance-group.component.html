@@ -6,26 +6,87 @@
 
     <div class="suggested-appliances-list center-horizontal">
         <div class="suggested-appliance-li" *ngFor="let appliance of suggestedAppliancesDisplay">
-                <tile (click)="toggle(appliance)" [selectable]="true" [selected]="isSelected(appliance)" [small]="true" [label]="appliance.name" [subLabel]="appliance.description"></tile>
+                <tile (click)="toggle(appliance)" [selected]="isSelected(appliance)" [small]="true" [label]="appliance.name" [subLabel]="appliance.description"></tile>
         </div>
+
         <div class="suggested-appliance-li" *ngFor="let i of [].constructor(fillers)">
             <tile [small]="true" class="transparent"></tile>
-        </div>        
+        </div>   
+        <div class="suggested-appliance-li">
+            <tile [small]="true" class="transparent"></tile>
+            <i (click)="onAddNewClick()" class="add-new fa-solid fa-circle-plus"></i>
+        </div>   
+  
     </div>
 
-    <div class="spacer"></div>
+    <!-- <div class="spacer"></div> -->
 
-        <div class="added-appliances-list center-horizontal">
-            <div id="wrapper" class="wrapper">
-
+    <div id="wrapper" class="added-appliances-list center-horizontal">
+        
+            <div *ngIf="selectedAppliances.length === 0" class="description">Select some appliances from above to get started</div>
             <div class="added-appliance-li" *ngFor="let appliance of selectedAppliances; index as i">
-                <span class="center-vertical">{{appliance.name}}</span>
-                <div (click)='removeAppliance(i)' class="cancel center-vertical"><i class="fa-solid fa-xmark"></i></div>
+                <span class="center-vertical">{{appliance.name}}<ng-container *ngIf="appliance.quantity > 1">({{appliance.quantity}})</ng-container></span>
+                <span class="center-vertical description">{{appliance.description}}</span>
+                <div (click)='onEditClick(i)' class="icon edit center-vertical"><i class="fa-solid fa-pencil"></i></div>
+                <div (click)='removeAppliance(i)' class="icon cancel center-vertical"><i class="fa-solid fa-xmark"></i></div>
             </div>
+    </div>
+
+
+    <div class="divider"></div>
+    <button-bar (onSecondary)="secondaryClicked()" (onPrimary)="primaryClicked()" [primaryDisabled]="selectedAppliances.length === 0" ></button-bar>
+
+</div>
+
+<!------------------------------------- MODAL ------------------------------------->
+
+<div class="modal-bg" (click)="closeApplianceModal()" [ngClass]="getModalBgFade()"></div>
+
+<div class="modal" [ngClass]="getModalFade()" id="addNewModal" tabindex="-1" aria-labelledby="add new appliance" aria-hidden="true">
+    <div class="modal-dialog">
+      <div (outsideClick)="closeOnBgClick()" class="modal-content">
+        <div class="modal-header">
+          <h1 *ngIf="!applianceForm.value.editMode" class="modal-title fs-5" id="exampleModalLabel">Add a new appliance</h1>
+          <h1 *ngIf="applianceForm.value.editMode" class="modal-title fs-5" id="exampleModalLabel">Edit "{{editTitle}}"</h1>
+          <button type="button" class="btn-close" (click)="closeApplianceModal()" aria-label="Close"></button>
         </div>
+        <div class="modal-body">
+            <form class="form-group" [formGroup]="applianceForm">
+
+                <label for="name">Name: </label>
+                <input id="name" type="text" formControlName="name">
+              
+                <label for="wattage">Wattage: </label>
+                <input id="wattage" class="short" type="number" formControlName="wattage">
+                <div *ngIf="applianceForm.controls['wattage'].invalid && (applianceForm.controls['wattage'].dirty || applianceForm.controls['wattage'].touched)">
+                    <app-error-message *ngIf="applianceForm.controls['wattage'].errors?.['min']"  label="Must be greater than 0"></app-error-message>
+                </div>
+
+                <label for="usageTime">Hours used per day:</label>
+                <input id="usageTime" class="short" type="number" formControlName="usageTime">
+                <div *ngIf="applianceForm.controls['usageTime'].invalid && (applianceForm.controls['usageTime'].dirty || applianceForm.controls['usageTime'].touched)">
+                    <app-error-message *ngIf="applianceForm.controls['usageTime'].errors?.['min']"  label="Must be greater than 0"></app-error-message>
+                    <app-error-message *ngIf="applianceForm.controls['usageTime'].errors?.['max']"  label="Must be 24 hours or less"></app-error-message>
+                </div>
+
+                <label for="quantity">Quantity: </label>
+                <input id="quantity" class="short" type="number" inputmode="numeric" formControlName="quantity">
+                <div *ngIf="applianceForm.controls['quantity'].invalid && (applianceForm.controls['quantity'].dirty || applianceForm.controls['quantity'].touched)">
+                    <app-error-message *ngIf="applianceForm.controls['quantity'].errors?.['min']"  label="Must be greater than 0"></app-error-message>
+                    <app-error-message *ngIf="applianceForm.controls['quantity'].errors?.['pattern'] && !applianceForm.controls['quantity'].errors?.['min']"  label="Enter a whole number"></app-error-message>
+
+                </div>
+            </form>
+
+            
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeApplianceModal()">Close</button>
+          
+          <button *ngIf="!applianceForm.value.editMode" type="button" (click)="onSubmitNewAppliance()" [disabled]="!applianceForm.valid" class="btn btn-primary">Add appliance</button>
+          <button *ngIf="applianceForm.value.editMode" type="button" (click)="onSubmitNewAppliance()" [disabled]="!applianceForm.valid" class="btn btn-primary">Save</button>
 
         </div>
-
-
-
+      </div>
+    </div>
 </div>

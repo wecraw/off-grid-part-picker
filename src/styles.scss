@@ -18,19 +18,23 @@ h1{
     min-width: 130px;
 }
 
+.modal-backdrop {
+    display: none; //override default bootstrap
+}
+
 .btn-primary {
-    background-color: $green-dark;
-    border-color: $green-dark;
+    background-color: $green-dark !important;
+    border-color: $green-dark !important;
 
     &.disabled {
-        background-color: $green-disabled;
-        border-color: $green-disabled;
+        background-color: $green-disabled !important;
+        border-color: $green-disabled !important;
         pointer-events: none;
     }
 
     &:hover{
-        background-color: $green-dark;
-        border-color: $green-dark;
+        background-color: $green-darker !important;
+        border-color: $green-darker !important;
     }
 
     &:active{
@@ -74,3 +78,7 @@ h1{
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
   }
+
+.self-flex-end {
+    align-self: flex-end;
+}

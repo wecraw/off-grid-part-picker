@@ -10,7 +10,8 @@ export const appliances: Appliance[] = [
         averageUsageTime: 0.2,
         usageTime: 0.2,
         quantity: 1,
-        applianceGroup: 'kitchen'
+        applianceGroup: 'kitchen',
+        id: "1"
     },
     {
         name: "Microwave",
@@ -19,7 +20,8 @@ export const appliances: Appliance[] = [
         averageUsageTime: 0.3,
         usageTime: 0.3,
         quantity: 1,
-        applianceGroup: 'kitchen'
+        applianceGroup: 'kitchen',
+        id: "2"
     },
     {
         name: "Fridge",
@@ -29,7 +31,8 @@ export const appliances: Appliance[] = [
         averageUsageTime: 4,
         usageTime: 4,
         quantity: 1,
-        applianceGroup: 'kitchen'
+        applianceGroup: 'kitchen',
+        id: "3"
     },
     {
         name: "Freezer",
@@ -39,7 +42,8 @@ export const appliances: Appliance[] = [
         averageUsageTime: 0.3,
         usageTime: 0.3,
         quantity: 1,
-        applianceGroup: 'kitchen'
+        applianceGroup: 'kitchen',
+        id: "4"
     },
     {
         name: "Coffee machine",
@@ -48,7 +52,8 @@ export const appliances: Appliance[] = [
         averageUsageTime: 0.2,
         usageTime: 0.2,
         quantity: 1,
-        applianceGroup: 'kitchen'
+        applianceGroup: 'kitchen',
+        id: "5"
     },
 
 
