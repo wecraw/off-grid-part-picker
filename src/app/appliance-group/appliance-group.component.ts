@@ -23,6 +23,21 @@ export class ApplianceGroupComponent implements OnInit {
   fillers: number = 0
 
   applianceForm = this.getApplianceForm()
+  editTitle: string = "Edit Appliance"
+
+  showApplianceModal: boolean = false;
+
+  hideModalBg: boolean = true;
+
+  ngOnInit(){
+    this.suggestedAppliancesDisplay = this.suggestedAppliances.appliances
+    this.getFillers()
+  }
+
+  toggleApplianceModal(){
+    this.showApplianceModal = !this.showApplianceModal
+    if (this.showApplianceModal) this.hideModalBg = false;
+  }
 
   getApplianceForm(appliance?: Appliance){
 
@@ -83,13 +98,9 @@ export class ApplianceGroupComponent implements OnInit {
     this.scroll()
   }
 
-  onAddNewClick(){
-    this.applianceForm = this.getApplianceForm()
-  }
 
 
   onSubmitNewAppliance(){
-    console.log(this.applianceForm)
     if (this.applianceForm.value.name && 
         this.applianceForm.value.wattage &&
         this.applianceForm.value.usageTime &&
@@ -116,22 +127,39 @@ export class ApplianceGroupComponent implements OnInit {
     } else {
       console.log("uh ohhhhh")
     }
+    this.closeApplianceModal()
+  }
+
+  openApplianceModal(){
+    this.showApplianceModal = true;
+    this.hideModalBg = false;
   }
 
   removeAppliance(index: number){
     this.selectedAppliances.splice(index, 1)
   }
 
-  editAppliance(index: number){
-    this.applianceForm = this.getApplianceForm(this.selectedAppliances[index])
+  onAddNewClick(){
+    this.applianceForm = this.getApplianceForm()
+    this.openApplianceModal()
+  }
 
+  onEditClick(index: number){
+    this.applianceForm = this.getApplianceForm(this.selectedAppliances[index])
+    this.editTitle = this.selectedAppliances[index].name
+    this.openApplianceModal()
+  }
+
+  closeApplianceModal(){
+    this.showApplianceModal = false
+    this.hideModalBg = true;
   }
 
   toggle(appliance: Appliance){
     let i = this.selectedAppliances.findIndex(obj => obj.id === appliance.id)
 
     if (i === -1) {
-      this.selectedAppliances.push(appliance)
+      this.addAppliance(appliance)
     } else {
       this.selectedAppliances.splice(i, 1)
     }
@@ -140,9 +168,10 @@ export class ApplianceGroupComponent implements OnInit {
   
   scroll(){
     let objDiv = document.getElementById("wrapper")!;
+    console.log(objDiv.scrollHeight)
     setTimeout(() => {
       objDiv.scrollTo({top: objDiv.scrollHeight, behavior: 'smooth'});
-    }, 1) //duration of fade out animation    
+    }, 0.01) //duration of fade out animation    
 
   }
 
@@ -151,8 +180,26 @@ export class ApplianceGroupComponent implements OnInit {
     return (i !== -1)
   }
 
-  ngOnInit(){
-    this.suggestedAppliancesDisplay = this.suggestedAppliances.appliances
-    this.getFillers()
+
+  //DOM Helpers-----------------------------------------------------
+  
+  getModalBgFade(){
+    if (this.showApplianceModal){
+      return "fade-in-bg"
+    } else {
+      return "hidden"
+    }
+  }
+
+  getModalFade(){
+    if (this.showApplianceModal){
+      return "fade-in slide-in-top"
+    } else {
+      return "hidden"
+    }
+  }
+
+  closeOnBgClick(){
+    this.closeApplianceModal();
   }
 }

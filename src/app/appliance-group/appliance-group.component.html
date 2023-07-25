@@ -14,24 +14,22 @@
         </div>   
         <div class="suggested-appliance-li">
             <tile [small]="true" class="transparent"></tile>
-            <i data-bs-toggle="modal" (click)="onAddNewClick()" data-bs-target="#addNewModal" class="add-new fa-solid fa-circle-plus"></i>
+            <i (click)="onAddNewClick()" class="add-new fa-solid fa-circle-plus"></i>
         </div>   
   
     </div>
 
-    <div class="spacer"></div>
+    <!-- <div class="spacer"></div> -->
 
-    <div class="added-appliances-list center-horizontal">
+    <div id="wrapper" class="added-appliances-list center-horizontal">
         
-        <div id="wrapper" class="wrapper">
             <div *ngIf="selectedAppliances.length === 0" class="description">Select some appliances from above to get started</div>
             <div class="added-appliance-li" *ngFor="let appliance of selectedAppliances; index as i">
                 <span class="center-vertical">{{appliance.name}}<ng-container *ngIf="appliance.quantity > 1">({{appliance.quantity}})</ng-container></span>
                 <span class="center-vertical description">{{appliance.description}}</span>
-                <div data-bs-toggle="modal" data-bs-target="#addNewModal" (click)='editAppliance(i)' class="edit center-vertical"><i class="fa-solid fa-pencil"></i></div>
-                <div (click)='removeAppliance(i)' class="cancel center-vertical"><i class="fa-solid fa-xmark"></i></div>
+                <div (click)='onEditClick(i)' class="icon edit center-vertical"><i class="fa-solid fa-pencil"></i></div>
+                <div (click)='removeAppliance(i)' class="icon cancel center-vertical"><i class="fa-solid fa-xmark"></i></div>
             </div>
-        </div>
     </div>
 
 
@@ -42,12 +40,15 @@
 
 <!------------------------------------- MODAL ------------------------------------->
 
-<div class="modal fade" id="addNewModal" tabindex="-1" aria-labelledby="add new appliance" aria-hidden="true">
+<div class="modal-bg" (click)="closeApplianceModal()" [ngClass]="getModalBgFade()"></div>
+
+<div class="modal" [ngClass]="getModalFade()" id="addNewModal" tabindex="-1" aria-labelledby="add new appliance" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div (outsideClick)="closeOnBgClick()" class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Add a new appliance</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h1 *ngIf="!applianceForm.value.editMode" class="modal-title fs-5" id="exampleModalLabel">Add a new appliance</h1>
+          <h1 *ngIf="applianceForm.value.editMode" class="modal-title fs-5" id="exampleModalLabel">Edit "{{editTitle}}"</h1>
+          <button type="button" class="btn-close" (click)="closeApplianceModal()" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <form class="form-group" [formGroup]="applianceForm">
@@ -80,9 +81,11 @@
             
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" (click)="closeApplianceModal()">Close</button>
           
-          <button *ngIf="!applianceForm.value.editMode" type="button" (click)="onSubmitNewAppliance()" data-bs-dismiss="modal" [disabled]="!applianceForm.valid" class="btn btn-primary">Add appliance</button>
+          <button *ngIf="!applianceForm.value.editMode" type="button" (click)="onSubmitNewAppliance()" [disabled]="!applianceForm.valid" class="btn btn-primary">Add appliance</button>
+          <button *ngIf="applianceForm.value.editMode" type="button" (click)="onSubmitNewAppliance()" [disabled]="!applianceForm.valid" class="btn btn-primary">Save</button>
+
         </div>
       </div>
     </div>

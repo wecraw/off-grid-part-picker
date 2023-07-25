@@ -10,6 +10,7 @@ import { ButtonBarComponent } from './common/button-bar/button-bar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApplianceEditorComponent } from './appliance-editor/appliance-editor.component';
 import { ErrorMessageComponent } from './common/components/error-message/error-message.component';
+import { OutsideClickDirective } from './common/directives/outside-click.directive';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ErrorMessageComponent } from './common/components/error-message/error-m
     ButtonBarComponent,
     ApplianceEditorComponent,
     ErrorMessageComponent,
+    OutsideClickDirective,
   ],
   imports: [
     BrowserModule,
